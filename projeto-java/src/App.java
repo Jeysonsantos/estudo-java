@@ -74,7 +74,7 @@ public class App {
             System.out.println("Digite a nota:");
             String nota = opt.nextLine();
             String aux_disciplina = dici.get(nome_Alunos.get(op_nome2)).get(2);
-            dici.get(nome_Alunos.get(op_nome2)).set(2,aux_disciplina+" -> "+"("+nota+")");
+            dici.get(nome_Alunos.get(op_nome2)).set(2,aux_disciplina+" \n NOTA :  "+"("+nota+")");
             
         }else if(op==4){
             System.out.println();
@@ -87,7 +87,8 @@ public class App {
             System.out.println();
             System.out.println("Digite a quantidade de faltas:");
             String num_faltas = opt.nextLine();
-            
+            String aux_disciplina = dici.get(nome_Alunos.get(op_nome3)).get(2);
+            dici.get(nome_Alunos.get(op_nome3)).set(2,aux_disciplina+" \n"+"FALTAS : ("+num_faltas+")");
         }
                 
         }
