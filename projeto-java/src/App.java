@@ -26,65 +26,94 @@ public class App {
             if(Integer.parseInt(op) == 1)
             {
                 Scanner matricula = new Scanner(System.in);
+                System.out.println("-----------------------");
                 System.out.println("Digite o nome do aluno:");
                 String nome = matricula.nextLine();
-                System.out.println("Digite o CPF");
+                System.out.println("-----------------------");
+                System.out.println("Digite o CPF:");
                 String cpf = matricula.nextLine();
-                System.out.println("Digite o numero de matricula:");
+                System.out.println("-----------------------");
+                System.out.println("Digite o número de matricula:");
                 String mat = matricula.nextLine();
+                System.out.println("-----------------------");
                 System.out.println("Digite o nome da disciplina:");
                 String disciplina = matricula.nextLine();
+                System.out.println("-----------------------");
                 nome_Alunos.add(nome);
                 dados.add(cpf);
                 dados.add(mat);
                 dados.add(disciplina);
                 dici.put(nome,dados);
             }else if(Integer.parseInt(op) == 2){
-                System.out.println();
-                System.out.println("--Selecione um aluno--");
-                System.out.println("Digite um inteiro correspondente:");
-                System.out.println();
-                for(int i=0;i<nome_Alunos.size();i++){
-                    System.out.println(i+")"+ nome_Alunos.get(i));
+                if(dici.isEmpty()){
+                    System.out.println();
+                    System.out.println("-------------------------------");
+                    System.out.println("Realize o cadastro primeiro.");
+                    System.out.println("-------------------------------");
+                    System.out.println();
+                }else{
+                    System.out.println();
+                    System.out.println("--Selecione um aluno--");
+                    System.out.println("Digite um inteiro correspondente:");
+                    System.out.println();
+                    for(int i=0;i<nome_Alunos.size();i++){
+                        System.out.println(i+")"+ nome_Alunos.get(i));
+                    }
+                    //System.out.println((nome_Alunos.size()) +")" + "VOLTAR");
+                    int op_nome = opt.nextInt();
+                    System.out.println();
+                    System.out.println();
+                    System.out.println("CPF:" + dici.get(nome_Alunos.get(op_nome)).get(0));
+                    System.out.println("MATRÍCULA:" + dici.get(nome_Alunos.get(op_nome)).get(1));
+                    System.out.println("DISCIPLINA MATRICULADA:" + dici.get(nome_Alunos.get(op_nome)).get(2));
+                    System.out.println();
+                    System.out.println();
                 }
-                //System.out.println((nome_Alunos.size()) +")" + "VOLTAR");
-                int op_nome = opt.nextInt();
-                System.out.println();
-                System.out.println();
-                System.out.println("CPF:" + dici.get(nome_Alunos.get(op_nome)).get(0));
-                System.out.println("MATRÍCULA:" + dici.get(nome_Alunos.get(op_nome)).get(1));
-                System.out.println("DISCIPLINA MATRICULADA:" + dici.get(nome_Alunos.get(op_nome)).get(2));
-                System.out.println();
-                System.out.println();
             }else if(Integer.parseInt(op) == 3){
+                if(dici.isEmpty()){
                 System.out.println();
-                System.out.println("--Selecione um aluno--");
-                System.out.println("Digite um inteiro correspondente:");
+                System.out.println("-------------------------------");
+                System.out.println("Realize o cadastro primeiro.");
+                System.out.println("-------------------------------");
                 System.out.println();
-                for(int i=0;i<nome_Alunos.size();i++){
-                    System.out.println(i+")"+ nome_Alunos.get(i));
+
+                }else{
+                    System.out.println();
+                    System.out.println("--Selecione um aluno--");
+                    System.out.println("Digite um inteiro correspondente:");
+                    System.out.println();
+                    for(int i=0;i<nome_Alunos.size();i++){
+                        System.out.println(i+")"+ nome_Alunos.get(i));
+                    }
+                    int op_nome2 = opt.nextInt();opt.nextLine();
+                    System.out.println();
+                    System.out.println("Digite a nota:");
+                    String nota = opt.nextLine();
+                    String aux_disciplina = dici.get(nome_Alunos.get(op_nome2)).get(2);
+                    dici.get(nome_Alunos.get(op_nome2)).set(2,aux_disciplina+" \n NOTA :  "+"("+nota+")");
                 }
-                int op_nome2 = opt.nextInt();opt.nextLine();
-                System.out.println();
-                System.out.println("Digite a nota:");
-                String nota = opt.nextLine();
-                String aux_disciplina = dici.get(nome_Alunos.get(op_nome2)).get(2);
-                dici.get(nome_Alunos.get(op_nome2)).set(2,aux_disciplina+" \n NOTA :  "+"("+nota+")");
-                
             }else if(Integer.parseInt(op) == 4){
-                System.out.println();
-                System.out.println("--Selecione um aluno--");
-                System.out.println("Digite um inteiro correspondente:");
-                System.out.println();
-                for(int i=0;i<nome_Alunos.size();i++){
-                    System.out.println(i+")"+ nome_Alunos.get(i));
+                if(dici.isEmpty()){
+                    System.out.println();
+                    System.out.println("-------------------------------");
+                    System.out.println("Realize o cadastro primeiro.");
+                    System.out.println("-------------------------------");
+                    System.out.println();
+                }else{
+                    System.out.println();
+                    System.out.println("--Selecione um aluno--");
+                    System.out.println("Digite um inteiro correspondente:");
+                    System.out.println();
+                    for(int i=0;i<nome_Alunos.size();i++){
+                        System.out.println(i+")"+ nome_Alunos.get(i));
+                    }
+                    int op_nome3 = opt.nextInt();opt.nextLine();
+                    System.out.println();
+                    System.out.println("Digite a quantidade de faltas(Int):");
+                    String num_faltas = opt.nextLine();
+                    String aux_disciplina = dici.get(nome_Alunos.get(op_nome3)).get(2);
+                    dici.get(nome_Alunos.get(op_nome3)).set(2,aux_disciplina+" \n"+"FALTAS : ("+num_faltas+")");
                 }
-                int op_nome3 = opt.nextInt();opt.nextLine();
-                System.out.println();
-                System.out.println("Digite a quantidade de faltas(Int):");
-                String num_faltas = opt.nextLine();
-                String aux_disciplina = dici.get(nome_Alunos.get(op_nome3)).get(2);
-                dici.get(nome_Alunos.get(op_nome3)).set(2,aux_disciplina+" \n"+"FALTAS : ("+num_faltas+")");
             }else if(Integer.parseInt(op) == 0){
                 break;
             }
