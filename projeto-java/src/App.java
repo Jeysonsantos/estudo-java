@@ -17,7 +17,7 @@ public class App {
             System.out.println("Opções:"
                 + "\n 1.Matricular um aluno no sistema."
                 + "\n 2.Mostrar informações de um aluno do sistema."
-                + "\n 3.Adicionar nota."
+                + "\n 3.Adicionar Nota."
                 + "\n 4.Adicionar Faltas."
                 + "\n 0.Sair");
             Scanner opt = new Scanner(System.in);
@@ -25,7 +25,7 @@ public class App {
             String op = opt.nextLine();
             if(op == "0"){break;}
         
-        if(op == "1")
+        if(Integer.parseInt(op) == 1)
         {
             Scanner matricula = new Scanner(System.in);
             System.out.println("Digite o nome do aluno:");
@@ -41,7 +41,7 @@ public class App {
             dados.add(mat);
             dados.add(disciplina);
             dici.put(nome,dados);
-        }else if(op=="2"){
+        }else if(Integer.parseInt(op) == 2){
             System.out.println();
             System.out.println("--Selecione um aluno--");
             System.out.println("Digite um inteiro correspondente:");
@@ -49,6 +49,7 @@ public class App {
             for(int i=0;i<nome_Alunos.size();i++){
                 System.out.println(i+")"+ nome_Alunos.get(i));
             }
+            System.out.println((nome_Alunos.size()) +")" + "VOLTAR");
             int op_nome = opt.nextInt();
             System.out.println();
             System.out.println();
@@ -57,7 +58,7 @@ public class App {
             System.out.println("DISCIPLINA MATRICULADA:" + dici.get(nome_Alunos.get(op_nome)).get(2));
             System.out.println();
             System.out.println();
-        }else if(op=="3"){
+        }else if(Integer.parseInt(op) == 3){
             System.out.println();
             System.out.println("--Selecione um aluno--");
             System.out.println("Digite um inteiro correspondente:");
@@ -72,7 +73,7 @@ public class App {
             String aux_disciplina = dici.get(nome_Alunos.get(op_nome2)).get(2);
             dici.get(nome_Alunos.get(op_nome2)).set(2,aux_disciplina+" \n NOTA :  "+"("+nota+")");
             
-        }else if(op=="4"){
+        }else if(Integer.parseInt(op) == 4){
             System.out.println();
             System.out.println("--Selecione um aluno--");
             System.out.println("Digite um inteiro correspondente:");
