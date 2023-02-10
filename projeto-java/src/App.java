@@ -13,16 +13,21 @@ public class App {
         Map<String,String[]> dici = new HashMap<>();
         Map<String,String[]> dici_diciplinas = new HashMap<>();
 
-        System.out.println("Seja bem vindo ao sistema de cadastro!");
+        System.out.println("-------------- Bem vindo ao sistema de cadastro! -------------");
+        System.out.println();
         while(true){
-            System.out.println("Opções:"
+            System.out.println("-----> MENU <-----");
+            System.out.println();
+            System.out.println("Opções:\n"
                 + "\n 1.Matricular um aluno no sistema." 
                 + "\n 3.Adicionar Nota. - (FALTA CONCLUIR)"
                 + "\n 5.Adicionar Faltas. - (FALTA CONCLUIR)"
                 + "\n 7.Mostrar informações de um aluno do sistema."
                 + "\n 9.Adicionar Disciplinas."
-                + "\n 0.Sair");
+                + "\n 10.Remover Disciplinas."
+                + "\n 0.Sair\n");
             Scanner opt = new Scanner(System.in);
+            System.out.println("Digite uma opção (Nº INTEIRO): ");
             String op = opt.nextLine();
         if(isInteger(op)){
             if(Integer.parseInt(op) == 1) // OPCAO MATRICULAR UM ALUNO
@@ -38,7 +43,7 @@ public class App {
                 System.out.println("Digite o número de matricula:");
                 String mat = matricula.nextLine();
                 System.out.println("-----------------------");
-                System.out.println("Digite o numero de disciplinas desse aluno:");
+                System.out.println("Digite o número de disciplinas desse aluno:");
                 String num_disciplinas = matricula.nextLine();
                 System.out.println("-----------------------");
                 nome_Alunos.add(nome);
@@ -59,8 +64,11 @@ public class App {
                     System.out.println("----ALUNOS CADASTRADOS:----");
                     System.out.println();
                     for(int i=0;i<nome_Alunos.size();i++){
-                        System.out.println(i+")"+ nome_Alunos.get(i));
+                        int aux=i+1;
+                        System.out.println(aux+")"+ nome_Alunos.get(i));
                     }
+                    System.out.println("0) VOLTAR AO MENU");
+
                     System.out.println();
                     System.out.println("--Escolha um aluno--");
                     System.out.println();
@@ -68,11 +76,12 @@ public class App {
                     System.out.println();
                     //System.out.println((nome_Alunos.size()) +")" + "VOLTAR");
                     int op_nome7 = opt.nextInt();
+                    if(op_nome7==0){continue;}
                     System.out.println();
                     System.out.println();
-                    System.out.println("---------  ALUNO ATUAL: "+ nome_Alunos.get(op_nome7)+"  ----------");
+                    System.out.println("---------  ALUNO ATUAL: "+ nome_Alunos.get(op_nome7-1)+"  ----------");
                     System.out.println();
-                    String nome_aluno = nome_Alunos.get(op_nome7);
+                    String nome_aluno = nome_Alunos.get(op_nome7-1);
                     System.out.println("CPF:" + (dici.get(nome_aluno))[0]);
                     System.out.println();
 
@@ -84,8 +93,9 @@ public class App {
                     System.out.println();
 
                     for(int i=0;i<num_disciplinas_aluno_escolhido7;i++){
-                        int aux7=i+1;
-                        System.out.println("-------->"+aux7+") "+ dici_diciplinas.get(nome_aluno)[i]);
+                        if(dici_diciplinas.get(nome_aluno)[i] != null){
+                            System.out.println("--------> "+ dici_diciplinas.get(nome_aluno)[i]);
+                        }
                     }
                     System.out.println();
 
@@ -103,14 +113,17 @@ public class App {
                     System.out.println("----ALUNOS CADASTRADOS:----");
                     System.out.println();
                     for(int i=0;i<nome_Alunos.size();i++){
-                        System.out.println(i+")"+ nome_Alunos.get(i));
+                        int aux=i+1;
+                        System.out.println(aux+")"+ nome_Alunos.get(i));
                     }
+                    System.out.println("0) VOLTAR AO MENU");
                     System.out.println();
                     System.out.println("--Escolha um aluno--");
                     System.out.println();
                     System.out.println("Digite um inteiro correspondente:");
                     System.out.println();
                     int op_nome3 = opt.nextInt();opt.nextLine();
+                    if(op_nome3==0){continue;}
                     System.out.println();
                     System.out.println("Digite a nota:");
                     String nota = opt.nextLine();
@@ -154,8 +167,10 @@ public class App {
                     System.out.println("----ALUNOS CADASTRADOS:----");
                     System.out.println();
                     for(int i=0;i<nome_Alunos.size();i++){
-                        System.out.println(i+")"+ nome_Alunos.get(i));
+                        int aux=i+1;
+                        System.out.println(aux+")"+ nome_Alunos.get(i));
                     }
+                    System.out.println("0)VOLTAR AO MENU");
                     System.out.println();
                     System.out.println("--Escolha um aluno--");
                     System.out.println();
@@ -163,21 +178,86 @@ public class App {
                     System.out.println();
 
                     int op_nome9 = opt.nextInt();opt.nextLine();
+                    if(op_nome9==0){continue;}
                     System.out.println();
-                    String nome_aluno = nome_Alunos.get(op_nome9);
+                    String nome_aluno = nome_Alunos.get(op_nome9-1);
                     String num_disciplinas_aluno_escolhido = (dici.get(nome_aluno)[2]);
                     System.out.println("ALUNO "+nome_aluno+" TEM "+num_disciplinas_aluno_escolhido+" DISCIPLINAS "+" PARA CADASTRAR!");
                     for(int i=0;i<Integer.parseInt(num_disciplinas_aluno_escolhido);i++){
                         System.out.println();
                         int aux=i+1;
-                        System.out.println("Digite a disciplina - "+ (aux)+" :");
+                        System.out.println("Digite a disciplina -> "+ (aux)+" :");
                         String disciplina = opt.nextLine();
                         dici_diciplinas.get(nome_aluno)[i] = disciplina;
                         System.out.println();
 
                     }
-                 } }
-            else if(Integer.parseInt(op) == 0){
+                 } 
+            }else if(Integer.parseInt(op) == 10){
+                if(dici.isEmpty()){
+                    System.out.println();
+                    System.out.println("-------------------------------");
+                    System.out.println("Realize o cadastro do aluno primeiro.");
+                    System.out.println("-------------------------------");
+                    System.out.println();
+                }else{
+                    System.out.println();
+                    System.out.println("----ALUNOS CADASTRADOS:----");
+                    System.out.println();
+                    for(int i=0;i<nome_Alunos.size();i++){
+                        int aux=i+1;
+                        System.out.println(aux+")"+ nome_Alunos.get(i));
+                    }
+                    System.out.println("0)VOLTAR AO MENU");
+                    System.out.println();
+                    System.out.println("--Escolha um aluno--");
+                    System.out.println();
+                    System.out.println("Digite um inteiro correspondente:");
+                    System.out.println();
+                    int op_nome10 = opt.nextInt();opt.nextLine();
+                    if(op_nome10==0){continue;}
+                    System.out.println();
+                    String nome_aluno = nome_Alunos.get(op_nome10-1);
+                    int num_disciplinas_aluno_escolhido10=Integer.parseInt((dici.get(nome_aluno))[2]);
+                    int aux=0;
+                    for(int i=0;i<num_disciplinas_aluno_escolhido10;i++){
+                        if(dici_diciplinas.get(nome_aluno)[i]!= null){aux=1;break;}
+                    }
+                    if(aux==1){
+                        System.out.println("-> DISCIPLINAS MATRICULADAS DE "+nome_aluno+" :" );  
+                        System.out.println();
+
+                        for(int i=0;i<num_disciplinas_aluno_escolhido10;i++){
+                            int aux7=i+1;
+                            if(dici_diciplinas.get(nome_aluno)[i]==null){
+                                System.out.println("-------->"+aux7+") "+ "-REMOVIDA-");
+                            }else{
+                                System.out.println("-------->"+aux7+") "+ dici_diciplinas.get(nome_aluno)[i]);   
+                            }
+                        }
+                        System.out.println("-------->0) VOLTAR AO MENU");
+                        System.out.println();
+                        System.out.println("Digite um inteiro correspondente para REMOVER a disciplina:");
+                        int op_disciplina10 = opt.nextInt();
+                        if(op_disciplina10 == 0){continue;}
+                        String disciplina_escolhida_deletar = dici_diciplinas.get(nome_aluno)[op_disciplina10-1];
+                        System.out.println();
+                        dici_diciplinas.get(nome_aluno)[op_disciplina10-1]=null;
+                        System.out.println("DISCIPLINA "+disciplina_escolhida_deletar + " DELETADA COM SUCESSO !!!");
+                        System.out.println();
+                    }else{
+                        System.out.println();
+                        System.out.println("-------------------------------");
+                        System.out.println("Realize o cadastro de disciplinas na opção 9 primeiro.");
+                        System.out.println("-------------------------------");
+                        System.out.println();
+
+                    }
+                    
+
+                    }
+
+            }else if(Integer.parseInt(op) == 0){
                 break;
             }
             else{
