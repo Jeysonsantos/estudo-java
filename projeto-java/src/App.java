@@ -51,9 +51,11 @@ public class App {
                     nome_Alunos.add(nome);
                     String[] dados = { cpf, mat,num_disciplinas};
                     String[] disciplinas = new String[Integer.parseInt(num_disciplinas)];
+                    String[] notas = new String[Integer.parseInt(num_disciplinas)];
+                    
                     dici.put(nome,dados);
                     dici_diciplinas.put(nome,disciplinas);
-                    dici_notas.put(nome,disciplinas);
+                    dici_notas.put(nome,notas);
                     
                 }else if(Integer.parseInt(op) == 7){ //Mostrar informações de um aluno do sistema.
                     if(dici.isEmpty()){
@@ -77,7 +79,6 @@ public class App {
                         System.out.println();
                         System.out.println("Digite um inteiro correspondente:");
                         System.out.println();
-                        //System.out.println((nome_Alunos.size()) +")" + "VOLTAR");
                         int op_nome7 = opt.nextInt();
                         if(op_nome7==0){continue;}
                         System.out.println();
@@ -98,6 +99,11 @@ public class App {
                         for(int i=0;i<num_disciplinas_aluno_escolhido7;i++){
                             if(dici_diciplinas.get(nome_aluno)[i] != null){
                                 System.out.println("--------> "+ dici_diciplinas.get(nome_aluno)[i]);
+                                if(dici_notas.get(nome_aluno)[i]!=null){
+                                    System.out.println("         NOTA : "+ dici_notas.get(nome_aluno)[i]);
+                                }else{
+                                    System.out.println("         NOTA : SEM NOTA");
+                                }
                             }
                         }
                         System.out.println();
@@ -157,6 +163,7 @@ public class App {
                             System.out.println("Digite a nota:");
                             String notaString=opt.nextLine();
                             System.out.println();
+                            dici_notas.get(nome_aluno)[op_disciplina3-1] = notaString;
                             System.out.println("-----> NOTA ("+notaString+") ADICIONADA COM SUCESSO NA DISCIPLINA ("+dici_diciplinas.get(nome_aluno)[op_disciplina3-1]+")");
                             System.out.println();
                         
