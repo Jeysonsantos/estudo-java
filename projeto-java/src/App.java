@@ -346,6 +346,14 @@ public class App {
                         System.out.println();
 
                     }
+                }else if(Integer.parseInt(op) == 8){
+                    System.out.println();
+                    System.out.println("-----------------------------------------");
+                    System.out.println("AINDA NÃO FEITO, CORNO, SABE LER NÃO?!" );  
+                    System.out.println("-----------------------------------------");
+                    System.out.println();
+
+                
                 }else if(Integer.parseInt(op) == 3){ // ADICIONAR NOTA
                     if(dici.isEmpty()){
                     System.out.println();
