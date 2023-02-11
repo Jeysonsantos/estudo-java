@@ -1,5 +1,3 @@
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Map;
@@ -26,8 +24,9 @@ public class App {
                 + "\n 3.Adicionar Nota."
                 + "\n 4.Alterar Nota."
                 + "\n 5.Adicionar Faltas."
-                + "\n 6.Alterar dados de um aluno. (FALTA TERMINAR)"
+                + "\n 6.Alterar dados de um aluno."
                 + "\n 7.Mostrar informações de um aluno."
+                + "\n 8.Alterar Faltas. - NÃO OBRIGATÓRIO (AINDA NAO FEITO)"
                 + "\n 9.Adicionar Disciplinas. (NÚMERO DE DISCIPLINAS CADASTRADO NA OPÇÃO 1)"
                 + "\n 10.Remover Disciplinas."
                 + "\n 0.Sair\n");
@@ -177,12 +176,115 @@ public class App {
 
                                 System.out.println("---NECESSÁRIO CADASTRAR DISCIPLINAS NA OPÇÃO 9");
                                 System.out.println();
-
                             }
                         }
                     
                 }else if(Integer.parseInt(op) == 6){ // ALTERAR DADOS DE UM ALUNO
-                    System.out.println("ENTROU E SAIU DA OPCAO 6");
+                    if(dici.isEmpty()){
+                        System.out.println();
+                        System.out.println("-------------------------------");
+                        System.out.println("Realize o cadastro primeiro.");
+                        System.out.println("-------------------------------");
+                        System.out.println();
+                    }else{
+                        System.out.println();
+                        System.out.println("----ALUNOS CADASTRADOS:----");
+                        System.out.println();
+                        for(int i=0;i<nome_Alunos.size();i++){
+                            int aux=i+1;
+                            System.out.println(aux+")"+ nome_Alunos.get(i));
+                        }
+                        System.out.println("0)VOLTAR AO MENU");
+
+                        System.out.println();
+                        System.out.println("--Escolha um aluno--");
+                        System.out.println();
+                        System.out.println("Digite um inteiro correspondente:");
+                        System.out.println();
+                        int op_nome6 = opt.nextInt();
+                        if(op_nome6==0){continue;}
+                        System.out.println();
+                        System.out.println();
+                        System.out.println("---------  ALUNO ATUAL: "+ nome_Alunos.get(op_nome6-1)+"  ----------");
+                        System.out.println();
+                        String nome_aluno6 = nome_Alunos.get(op_nome6-1);
+                        System.out.println("1) CPF:" + (dici.get(nome_aluno6))[0]);
+                        System.out.println();
+                        System.out.println("2) MATRÍCULA:" + (dici.get(nome_aluno6))[1]);
+                        System.out.println();
+                        System.out.println("3) E-MAIL:" + (dici.get(nome_aluno6))[3]);
+                        System.out.println();
+                        System.out.println("4) NOME:" + nome_aluno6);
+                        System.out.println();
+                        System.out.println("0) VOLTAR AO MENU");
+                        System.out.println();
+                        System.out.println("--Escolha uma opção para ALTERAR--");
+                        System.out.println();
+                        System.out.println("Digite um inteiro correspondente:");
+                        System.out.println();
+                        int op_alterar = opt.nextInt();opt.nextLine();
+                        if(op_alterar==0){
+                            continue;
+                        }else if(op_alterar==1){
+                            System.out.println();
+                            System.out.println("-- CPF CADASTRADO DE ("+nome_aluno6+"): "+ dici.get(nome_aluno6)[0]);
+                            System.out.println();
+                            System.out.println("Digite o novo CPF :");
+                            String cpf = opt.nextLine();
+                            dici.get(nome_aluno6)[0]=cpf;
+                            System.out.println();
+                            System.out.println("----CPF DE ("+nome_aluno6+") ALTERADO PARA ("+cpf+") COM SUCESSO!!!");
+                            System.out.println();
+                        }else if(op_alterar==2){
+                            System.out.println();
+                            System.out.println("-- MATRÍCULA CADASTRADA DE ("+nome_aluno6+"): "+ dici.get(nome_aluno6)[1]);
+                            System.out.println();
+                            System.out.println("Digite a nova MATRÍCULA :");
+                            String matriculaString = opt.nextLine();
+                            dici.get(nome_aluno6)[1]=matriculaString;
+                            System.out.println();
+                            System.out.println("----MATRÍCULA DE ("+nome_aluno6+") ALTERADA PARA ("+matriculaString+") COM SUCESSO!!!");
+                            System.out.println();
+                        }else if(op_alterar==3){
+                            System.out.println();
+                            System.out.println("-- E-MAIL CADASTRADO DE ("+nome_aluno6+"): "+ dici.get(nome_aluno6)[3]);
+                            System.out.println();
+                            System.out.println("Digite o novo E-MAIL :");
+                            String emailString = opt.nextLine();
+                            dici.get(nome_aluno6)[3]=emailString;
+                            System.out.println();
+                            System.out.println("----E-MAIL DE ("+nome_aluno6+") ALTERADA PARA ("+emailString+") COM SUCESSO!!!");
+                            System.out.println();
+                        }else if(op_alterar==4){
+                            System.out.println();
+                            System.out.println("-- NOME CADASTRADO : "+ nome_aluno6);
+                            System.out.println();
+                            System.out.println("Digite o novo NOME :");
+                            String novo_nomeString = opt.nextLine();
+
+                            dici.put(novo_nomeString,dici.get(nome_aluno6));
+                            dici.remove(nome_aluno6);
+
+                            dici_diciplinas.put(novo_nomeString,dici_diciplinas.get(nome_aluno6));
+                            dici_diciplinas.remove(nome_aluno6);
+
+                            dici_faltas.put(novo_nomeString,dici_faltas.get(nome_aluno6));
+                            dici_faltas.remove(nome_aluno6);
+
+                            dici_notas.put(novo_nomeString,dici_notas.get(nome_aluno6));
+                            dici_notas.remove(nome_aluno6);
+
+                            nome_Alunos.set(op_nome6-1,novo_nomeString);
+
+                            System.out.println();
+                            System.out.println("----NOME ALTERADO DE "+nome_aluno6+" PARA "+ novo_nomeString+" COM SUCESSO!!!");
+                            System.out.println();
+                        }else{
+                            System.out.println();
+                            System.out.println("--- OPÇÃO INVÁLIDA. ---");
+                            System.out.println();
+                        }
+                    }
                 }else if(Integer.parseInt(op) == 7){ // MOSTRAR INFORMACOES DE UM ALUNO
                     if(dici.isEmpty()){
                         System.out.println();
