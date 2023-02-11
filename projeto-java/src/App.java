@@ -10,10 +10,10 @@ public class App {
     public static void main(String[] args) 
     {
         ArrayList<String>nome_Alunos = new ArrayList<String>();
-        //ArrayList<String>dados = new ArrayList<String>();
         Map<String,String[]> dici = new HashMap<>();
         Map<String,String[]> dici_diciplinas = new HashMap<>();
         Map<String,String[]> dici_notas = new HashMap<>();
+        Map<String,String[]> dici_faltas = new HashMap<>();
 
         System.out.println("-------------- Bem vindo ao sistema de cadastro! -------------");
         System.out.println();
@@ -22,10 +22,13 @@ public class App {
             System.out.println();
             System.out.println("Opções:\n"
                 + "\n 1.Matricular um aluno no sistema." 
-                + "\n 3.Adicionar Nota. - (FALTA CONCLUIR)"
-                + "\n 5.Adicionar Faltas. - (FALTA CONCLUIR)"
-                + "\n 7.Mostrar informações de um aluno do sistema."
-                + "\n 9.Adicionar Disciplinas."
+                + "\n 2.Remover um aluno."
+                + "\n 3.Adicionar Nota."
+                + "\n 4.Alterar Nota."
+                + "\n 5.Adicionar Faltas."
+                + "\n 6.Alterar dados de um aluno. (FALTA TERMINAR)"
+                + "\n 7.Mostrar informações de um aluno."
+                + "\n 9.Adicionar Disciplinas. (NÚMERO DE DISCIPLINAS CADASTRADO NA OPÇÃO 1)"
                 + "\n 10.Remover Disciplinas."
                 + "\n 0.Sair\n");
             Scanner opt = new Scanner(System.in);
@@ -36,28 +39,151 @@ public class App {
                 {
                     Scanner matricula = new Scanner(System.in);
                     System.out.println("-----------------------");
-                    System.out.println("Digite o nome do aluno:");
+                    System.out.println("Digite o NOME do aluno:");
                     String nome = matricula.nextLine();
                     System.out.println("-----------------------");
                     System.out.println("Digite o CPF:");
                     String cpf = matricula.nextLine();
                     System.out.println("-----------------------");
-                    System.out.println("Digite o número de matricula:");
+                    System.out.println("Digite o número de MATRÍCULA:");
                     String mat = matricula.nextLine();
                     System.out.println("-----------------------");
-                    System.out.println("Digite o número de disciplinas desse aluno:");
+                    System.out.println("Digite o NÚMERO DE DISCIPLINAS desse aluno:");
                     String num_disciplinas = matricula.nextLine();
                     System.out.println("-----------------------");
+                    System.out.println("Digite o E-MAIL desse aluno:");
+                    String email = matricula.nextLine();
                     nome_Alunos.add(nome);
-                    String[] dados = { cpf, mat,num_disciplinas};
+                    String[] dados = { cpf, mat,num_disciplinas,email};
                     String[] disciplinas = new String[Integer.parseInt(num_disciplinas)];
                     String[] notas = new String[Integer.parseInt(num_disciplinas)];
+                    String[] faltas = new String[Integer.parseInt(num_disciplinas)];
+
+                    System.out.println();
+                    System.out.println("-----> DADOS SALVOS COM SUCESSO!! <-----");
+                    System.out.println();
                     
                     dici.put(nome,dados);
                     dici_diciplinas.put(nome,disciplinas);
                     dici_notas.put(nome,notas);
+                    dici_faltas.put(nome,faltas);
+
                     
-                }else if(Integer.parseInt(op) == 7){ //Mostrar informações de um aluno do sistema.
+                }else if(Integer.parseInt(op) == 2){ // REMOVER UM ALUNO
+                    if(dici.isEmpty()){
+                        System.out.println();
+                        System.out.println("-------------------------------");
+                        System.out.println("Realize o cadastro primeiro.");
+                        System.out.println("-------------------------------");
+                        System.out.println();
+                    }else{
+                        System.out.println();
+                        System.out.println("----ALUNOS CADASTRADOS:----");
+                        System.out.println();
+                        for(int i=0;i<nome_Alunos.size();i++){
+                            int aux=i+1;
+                            System.out.println(aux+")"+ nome_Alunos.get(i));
+                        }
+                        System.out.println("0)VOLTAR AO MENU");
+
+                        System.out.println();
+                        System.out.println("-- Escolha um aluno para REMOVER DO SISTEMA --");
+                        System.out.println();
+                        System.out.println("Digite um inteiro correspondente:");
+                        System.out.println();
+                        int op_nome3 = opt.nextInt(); // DA B.O SE O ANIMAL NAO DIGITAR INTEIRO.
+                        if(op_nome3==0){continue;}
+                        String aluno_removeString =nome_Alunos.get(op_nome3-1);
+                        dici.remove(aluno_removeString);
+                        nome_Alunos.remove(op_nome3-1);
+                        dici_diciplinas.remove(aluno_removeString);
+                        dici_faltas.remove(aluno_removeString);
+                        dici_notas.remove(aluno_removeString);
+                        System.out.println("-------------------------------");
+                        System.out.println();
+                        System.out.println("---ALUNO ("+aluno_removeString+") EXCLUÍDO COM SUCESSO!");
+                        System.out.println();
+                        System.out.println("-------------------------------");
+                        System.out.println();
+                    }
+                }else if(Integer.parseInt(op) == 4){ // ALTERAR NOTA
+                    if(dici.isEmpty()){
+                        System.out.println();
+                        System.out.println("-------------------------------");
+                        System.out.println("Realize o cadastro do aluno primeiro.");
+                        System.out.println("-------------------------------");
+                        System.out.println();
+    
+                        }else{
+                            System.out.println();
+                            System.out.println("----ALUNOS CADASTRADOS:----");
+                            System.out.println();
+                            for(int i=0;i<nome_Alunos.size();i++){
+                                int aux4=i+1;
+                                System.out.println(aux4+")"+ nome_Alunos.get(i));
+                            }
+                            System.out.println("0)VOLTAR AO MENU");
+                            System.out.println();
+                            System.out.println("--Escolha um aluno--");
+                            System.out.println();
+                            System.out.println("Digite um inteiro correspondente:");
+                            System.out.println();
+                            int op_nome4 = opt.nextInt();
+                            if(op_nome4==0){continue;}
+                            System.out.println();
+                            String nome_aluno4 = nome_Alunos.get(op_nome4-1);
+                            int num_disciplinas_aluno_escolhido4=Integer.parseInt((dici.get(nome_aluno4))[2]);
+                            int aux4=0;
+                            for(int i=0;i<num_disciplinas_aluno_escolhido4;i++){
+                                if(dici_diciplinas.get(nome_aluno4)[i]!= null){aux4=1;break;}
+                            }
+                            if(aux4==1){
+                                System.out.println("-> DISCIPLINAS MATRICULADAS DE ("+nome_aluno4+") COM NOTAS CADASTRADAS:" );  
+                                System.out.println();
+                                int segundo_aux_4=0;
+                                for(int i=0;i<num_disciplinas_aluno_escolhido4;i++){
+                                    int aux_4=i+1;
+                                    if(dici_diciplinas.get(nome_aluno4)[i]!=null){
+                                        if(dici_notas.get(nome_aluno4)[i]!=null){
+                                            segundo_aux_4=segundo_aux_4+1;
+                                            System.out.println("-------->"+aux_4+") "+ dici_diciplinas.get(nome_aluno4)[i] + " -> NOTA ATUAL CADASTRADA: "+ dici_notas.get(nome_aluno4)[i]);
+                                        }
+                                        
+                                    }
+                                }
+                                if(segundo_aux_4==0){
+                                    System.out.println();
+                                    System.out.println("------ NÃO EXISTE NOTAS CADASTRADAS PARA ESSE ALUNO -------");
+                                    System.out.println();
+
+                                    continue;}
+                                System.out.println("-------->0) VOLTAR AO MENU");
+                                System.out.println();
+                                System.out.println("Digite um inteiro correspondente à disciplina que deseja ALTERAR nota:");
+                                int op_disciplina4 = opt.nextInt();opt.nextLine();
+                                if(op_disciplina4 == 0){continue;}
+                                System.out.println();
+                                System.out.println("Digite a nova nota para a disciplina ("+ dici_diciplinas.get(nome_aluno4)[op_disciplina4-1]+ ") :");
+                                String nova_nota = opt.nextLine();
+                                System.out.println();
+                                dici_notas.get(nome_aluno4)[op_disciplina4-1]=nova_nota;
+                                System.out.println();
+                                System.out.println("---- NOVA NOTA CADASTRADA COM SUCESSO ----");
+                                System.out.println();
+
+
+                            }else{
+                                System.out.println();
+
+                                System.out.println("---NECESSÁRIO CADASTRAR DISCIPLINAS NA OPÇÃO 9");
+                                System.out.println();
+
+                            }
+                        }
+                    
+                }else if(Integer.parseInt(op) == 6){ // ALTERAR DADOS DE UM ALUNO
+                    System.out.println("ENTROU E SAIU DA OPCAO 6");
+                }else if(Integer.parseInt(op) == 7){ // MOSTRAR INFORMACOES DE UM ALUNO
                     if(dici.isEmpty()){
                         System.out.println();
                         System.out.println("-------------------------------");
@@ -85,24 +211,33 @@ public class App {
                         System.out.println();
                         System.out.println("---------  ALUNO ATUAL: "+ nome_Alunos.get(op_nome7-1)+"  ----------");
                         System.out.println();
-                        String nome_aluno = nome_Alunos.get(op_nome7-1);
-                        System.out.println("CPF:" + (dici.get(nome_aluno))[0]);
+                        String nome_aluno7 = nome_Alunos.get(op_nome7-1);
+                        System.out.println("CPF:" + (dici.get(nome_aluno7))[0]);
                         System.out.println();
 
-                        System.out.println("MATRÍCULA:" + (dici.get(nome_aluno))[1]);
+                        System.out.println("MATRÍCULA:" + (dici.get(nome_aluno7))[1]);
                         System.out.println();
 
-                        int num_disciplinas_aluno_escolhido7=Integer.parseInt((dici.get(nome_aluno))[2]);
+                        System.out.println("EMAIL:" + (dici.get(nome_aluno7))[3]);
+                        System.out.println();
+
+                        int num_disciplinas_aluno_escolhido7=Integer.parseInt((dici.get(nome_aluno7))[2]);
+                        
                         System.out.println("DISCIPLINAS MATRICULADAS: " );  
                         System.out.println();
 
                         for(int i=0;i<num_disciplinas_aluno_escolhido7;i++){
-                            if(dici_diciplinas.get(nome_aluno)[i] != null){
-                                System.out.println("--------> "+ dici_diciplinas.get(nome_aluno)[i]);
-                                if(dici_notas.get(nome_aluno)[i]!=null){
-                                    System.out.println("         NOTA : "+ dici_notas.get(nome_aluno)[i]);
+                            if(dici_diciplinas.get(nome_aluno7)[i] != null){
+                                System.out.println("--------> "+ dici_diciplinas.get(nome_aluno7)[i]);
+                                if(dici_notas.get(nome_aluno7)[i]!=null){
+                                    System.out.println("         NOTA : "+ dici_notas.get(nome_aluno7)[i]);
                                 }else{
                                     System.out.println("         NOTA : SEM NOTA");
+                                }
+                                if(dici_faltas.get(nome_aluno7)[i]!=null){
+                                    System.out.println("         FALTAS : "+ dici_faltas.get(nome_aluno7)[i]);
+                                }else{
+                                    System.out.println("         FALTAS : NÃO CADASTRADO");
                                 }
                             }
                         }
@@ -134,22 +269,22 @@ public class App {
                         int op_nome3 = opt.nextInt();
                         if(op_nome3==0){continue;}
                         System.out.println();
-                        String nome_aluno = nome_Alunos.get(op_nome3-1);
-                        int num_disciplinas_aluno_escolhido3=Integer.parseInt((dici.get(nome_aluno))[2]);
+                        String nome_aluno3 = nome_Alunos.get(op_nome3-1);
+                        int num_disciplinas_aluno_escolhido3=Integer.parseInt((dici.get(nome_aluno3))[2]);
                         int aux=0;
                         for(int i=0;i<num_disciplinas_aluno_escolhido3;i++){
-                            if(dici_diciplinas.get(nome_aluno)[i]!= null){aux=1;break;}
+                            if(dici_diciplinas.get(nome_aluno3)[i]!= null){aux=1;break;}
                         }
                         if(aux==1){
-                            System.out.println("-> DISCIPLINAS MATRICULADAS DE "+nome_aluno+" :" );  
+                            System.out.println("-> DISCIPLINAS MATRICULADAS DE ("+nome_aluno3+") SEM CADASTRO DE NOTA:" );  
                             System.out.println();
 
                             for(int i=0;i<num_disciplinas_aluno_escolhido3;i++){
                                 int aux7=i+1;
-                                if(dici_diciplinas.get(nome_aluno)[i]==null){
-                                    System.out.println("-------->"+aux7+") "+ "-REMOVIDA-");
-                                }else{
-                                    System.out.println("-------->"+aux7+") "+ dici_diciplinas.get(nome_aluno)[i]);   
+                                if(dici_diciplinas.get(nome_aluno3)[i]!=null){
+                                    if(dici_notas.get(nome_aluno3)[i]==null){
+                                        System.out.println("-------->"+aux7+") "+ dici_diciplinas.get(nome_aluno3)[i]); 
+                                    }  
                                 }
                             }
                             System.out.println("-------->0) VOLTAR AO MENU");
@@ -158,19 +293,19 @@ public class App {
                             int op_disciplina3 = opt.nextInt();opt.nextLine();
                             if(op_disciplina3 == 0){continue;}
                             System.out.println();
-                            System.out.println("-------> DISCIPLINA ESCOLHIDA PARA ADICIONAR NOTA : " + dici_diciplinas.get(nome_aluno)[op_disciplina3-1]);
+                            System.out.println("-------> DISCIPLINA ESCOLHIDA PARA ADICIONAR NOTA : " + dici_diciplinas.get(nome_aluno3)[op_disciplina3-1]);
                             System.out.println();
                             System.out.println("Digite a nota:");
                             String notaString=opt.nextLine();
                             System.out.println();
-                            dici_notas.get(nome_aluno)[op_disciplina3-1] = notaString;
-                            System.out.println("-----> NOTA ("+notaString+") ADICIONADA COM SUCESSO NA DISCIPLINA ("+dici_diciplinas.get(nome_aluno)[op_disciplina3-1]+")");
+                            dici_notas.get(nome_aluno3)[op_disciplina3-1] = notaString;
+                            System.out.println("-----> NOTA ("+notaString+") ADICIONADA COM SUCESSO NA DISCIPLINA ("+dici_diciplinas.get(nome_aluno3)[op_disciplina3-1]+")");
                             System.out.println();
                         
                     }else
                     {
                         System.out.println();
-                        System.out.println("--- NECESSÁRIO CADASTRAR DISCIPLINAS PARA O ALUNO ("+nome_aluno.toUpperCase()+") !!!");
+                        System.out.println("--- NECESSÁRIO CADASTRAR DISCIPLINAS PARA O ALUNO ("+nome_aluno3.toUpperCase()+") !!!");
                         System.out.println();
                     }
                 }
@@ -186,18 +321,57 @@ public class App {
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
                         for(int i=0;i<nome_Alunos.size();i++){
-                            System.out.println(i+")"+ nome_Alunos.get(i));
+                            int aux=i+1;
+                            System.out.println(aux+")"+ nome_Alunos.get(i));
                         }
+                        System.out.println("0)VOLTAR AO MENU");
                         System.out.println();
                         System.out.println("--Escolha um aluno--");
                         System.out.println();
                         System.out.println("Digite um inteiro correspondente:");
                         System.out.println();
+                        int op_nome5 = opt.nextInt();
+                        if(op_nome5==0){continue;}
                         System.out.println();
-                        System.out.println("Digite a quantidade de faltas(Int):");
-                        String num_faltas = opt.nextLine();
-                        //String aux_disciplina = dici.get(nome_Alunos.get(op_nome3)).get(2);
-                        //dici.get(nome_Alunos.get(op_nome3)).set(2,aux_disciplina+" \n"+"FALTAS : ("+num_faltas+")");
+                        String nome_aluno5 = nome_Alunos.get(op_nome5-1);
+                        int num_disciplinas_aluno_escolhido5=Integer.parseInt((dici.get(nome_aluno5))[2]);
+                        int aux=0;
+                        for(int i=0;i<num_disciplinas_aluno_escolhido5;i++){
+                            if(dici_diciplinas.get(nome_aluno5)[i]!= null){aux=1;break;}
+                        }
+                        if(aux==1){
+                            System.out.println("-> DISCIPLINAS MATRICULADAS DE "+nome_aluno5+" :" );  
+                            System.out.println();
+
+                            for(int i=0;i<num_disciplinas_aluno_escolhido5;i++){
+                                int aux5=i+1;
+                                if(dici_diciplinas.get(nome_aluno5)[i]==null){
+                                    System.out.println("-------->"+aux5+") "+ "-REMOVIDA-");
+                                }else{
+                                    System.out.println("-------->"+aux5+") "+ dici_diciplinas.get(nome_aluno5)[i]);   
+                                }
+                            }
+                            System.out.println("-------->0) VOLTAR AO MENU");
+                            System.out.println();
+                            System.out.println("Digite um inteiro correspondente à disciplina que desejar:");
+                            int op_disciplina5 = opt.nextInt();opt.nextLine();
+                            if(op_disciplina5 == 0){continue;}
+                            System.out.println();
+                            System.out.println("-------> DISCIPLINA ESCOLHIDA PARA ADICIONAR FALTAS : " + dici_diciplinas.get(nome_aluno5)[op_disciplina5-1]);
+                            System.out.println();
+                            System.out.println("Digite o número de faltas:");
+                            String faltasString=opt.nextLine();
+                            System.out.println();
+                            dici_faltas.get(nome_aluno5)[op_disciplina5-1] = faltasString;
+                            System.out.println("-----> NÚMERO DE FALTAS ("+faltasString+") ADICIONADAS COM SUCESSO NA DISCIPLINA ("+dici_diciplinas.get(nome_aluno5)[op_disciplina5-1]+")");
+                            System.out.println();
+                        
+                    }else
+                    {
+                        System.out.println();
+                        System.out.println("--- NECESSÁRIO CADASTRAR DISCIPLINAS PARA O ALUNO ("+nome_aluno5.toUpperCase()+") !!!");
+                        System.out.println();
+                    }
                     }
                 }else if(Integer.parseInt(op) == 9){
                     if(dici.isEmpty()){
@@ -224,20 +398,37 @@ public class App {
                         int op_nome9 = opt.nextInt();opt.nextLine();
                         if(op_nome9==0){continue;}
                         System.out.println();
-                        String nome_aluno = nome_Alunos.get(op_nome9-1);
-                        String num_disciplinas_aluno_escolhido = (dici.get(nome_aluno)[2]);
-                        System.out.println("ALUNO "+nome_aluno+" TEM "+num_disciplinas_aluno_escolhido+" DISCIPLINAS "+" PARA CADASTRAR!");
-                        for(int i=0;i<Integer.parseInt(num_disciplinas_aluno_escolhido);i++){
+                        String nome_aluno9 = nome_Alunos.get(op_nome9-1);
+                        String num_disciplinas_aluno_escolhido = (dici.get(nome_aluno9)[2]); // PODE DAR B.O SE A MULA NAO DIGITAR UM NUMERO INTEIRO
+                        int num_disciplinas_aluno_escolhidoINT=Integer.parseInt(num_disciplinas_aluno_escolhido);
+                        int cont=0;
+                        for(int i=0;i<num_disciplinas_aluno_escolhidoINT;i++){
+                            if(dici_diciplinas.get(nome_aluno9)[i]==null){
+                                cont=cont+1;
+                            }
+                        }
+                        System.out.println("ALUNO "+nome_aluno9+" TEM ("+cont+") DISCIPLINA(S) "+" PARA CADASTRAR!");
+                        if(cont==0){
+                            System.out.println("---------------------------------------------------------------");
+                            System.out.println();
+                            System.out.println("--- ALUNO JÁ POSSUI TODAS AS DISCIPLINAS CADASTRADAS ---");
+                            System.out.println();
+                            System.out.println("---------------------------------------------------------------");
+
+                            continue;}
+                        for(int i=0;i<num_disciplinas_aluno_escolhidoINT;i++){
                             System.out.println();
                             int aux=i+1;
-                            System.out.println("Digite a disciplina -> "+ (aux)+" :");
-                            String disciplina = opt.nextLine();
-                            dici_diciplinas.get(nome_aluno)[i] = disciplina;
+                            if(dici_diciplinas.get(nome_aluno9)[i]==null){
+                                System.out.println("Digite a disciplina -> "+ (aux)+" :");
+                                String disciplina = opt.nextLine();
+                                dici_diciplinas.get(nome_aluno9)[i] = disciplina;
+                            }
                             System.out.println();
 
                         }
                     } 
-                }else if(Integer.parseInt(op) == 10){
+                }else if(Integer.parseInt(op) == 10){ // REMOVER DISICPLINAS
                     if(dici.isEmpty()){
                         System.out.println();
                         System.out.println("-------------------------------");
@@ -261,22 +452,22 @@ public class App {
                         int op_nome10 = opt.nextInt();opt.nextLine();
                         if(op_nome10==0){continue;}
                         System.out.println();
-                        String nome_aluno = nome_Alunos.get(op_nome10-1);
-                        int num_disciplinas_aluno_escolhido10=Integer.parseInt((dici.get(nome_aluno))[2]);
+                        String nome_aluno10 = nome_Alunos.get(op_nome10-1);
+                        int num_disciplinas_aluno_escolhido10=Integer.parseInt((dici.get(nome_aluno10))[2]);
                         int aux=0;
                         for(int i=0;i<num_disciplinas_aluno_escolhido10;i++){
-                            if(dici_diciplinas.get(nome_aluno)[i]!= null){aux=1;break;}
+                            if(dici_diciplinas.get(nome_aluno10)[i]!= null){aux=1;break;}
                         }
                         if(aux==1){
-                            System.out.println("-> DISCIPLINAS MATRICULADAS DE "+nome_aluno+" :" );  
+                            System.out.println("-> DISCIPLINAS MATRICULADAS DE "+nome_aluno10+" :" );  
                             System.out.println();
 
                             for(int i=0;i<num_disciplinas_aluno_escolhido10;i++){
                                 int aux7=i+1;
-                                if(dici_diciplinas.get(nome_aluno)[i]==null){
+                                if(dici_diciplinas.get(nome_aluno10)[i]==null){
                                     System.out.println("-------->"+aux7+") "+ "-REMOVIDA-");
                                 }else{
-                                    System.out.println("-------->"+aux7+") "+ dici_diciplinas.get(nome_aluno)[i]);   
+                                    System.out.println("-------->"+aux7+") "+ dici_diciplinas.get(nome_aluno10)[i]);   
                                 }
                             }
                             System.out.println("-------->0) VOLTAR AO MENU");
@@ -284,9 +475,12 @@ public class App {
                             System.out.println("Digite um inteiro correspondente para REMOVER a disciplina:");
                             int op_disciplina10 = opt.nextInt();
                             if(op_disciplina10 == 0){continue;}
-                            String disciplina_escolhida_deletar = dici_diciplinas.get(nome_aluno)[op_disciplina10-1];
+                            String disciplina_escolhida_deletar = dici_diciplinas.get(nome_aluno10)[op_disciplina10-1];
                             System.out.println();
-                            dici_diciplinas.get(nome_aluno)[op_disciplina10-1]=null;
+                            dici_diciplinas.get(nome_aluno10)[op_disciplina10-1]=null;
+                            dici_faltas.get(nome_aluno10)[op_disciplina10-1]=null;
+                            dici_notas.get(nome_aluno10)[op_disciplina10-1]=null;
+
                             System.out.println("DISCIPLINA "+disciplina_escolhida_deletar + " DELETADA COM SUCESSO !!!");
                             System.out.println();
                         }else{
