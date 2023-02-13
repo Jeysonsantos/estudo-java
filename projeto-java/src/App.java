@@ -26,7 +26,7 @@ public class App {
                 + "\n 5.Adicionar Faltas."
                 + "\n 6.Alterar dados de um aluno."
                 + "\n 7.Mostrar informações de um aluno."
-                + "\n 8.Alterar Faltas. - NÃO OBRIGATÓRIO (AINDA NAO FEITO)"
+                + "\n 8.Alterar Faltas."
                 + "\n 9.Adicionar Disciplinas. (NÚMERO DE DISCIPLINAS CADASTRADO NA OPÇÃO 1)"
                 + "\n 10.Remover Disciplinas."
                 + "\n 0.Sair\n");
@@ -36,6 +36,9 @@ public class App {
             if(isInteger(op)){
                 if(Integer.parseInt(op) == 1) // OPCAO MATRICULAR UM ALUNO
                 {
+                    System.out.println();
+                    System.out.println("-> OPÇÃO ATUAL : 1) MATRICULAR UM ALUNO NO SISTEMA <-");
+                    System.out.println();
                     Scanner matricula = new Scanner(System.in);
                     System.out.println("-----------------------");
                     System.out.println("Digite o NOME do aluno:");
@@ -77,6 +80,8 @@ public class App {
                         System.out.println();
                     }else{
                         System.out.println();
+                        System.out.println("-> OPÇÃO ATUAL : 2) REMOVER UM ALUNO <-");
+                        System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
                         for(int i=0;i<nome_Alunos.size();i++){
@@ -114,6 +119,8 @@ public class App {
                         System.out.println();
     
                         }else{
+                            System.out.println();
+                            System.out.println("-> OPÇÃO ATUAL : 4) ALTERAR NOTA <-");
                             System.out.println();
                             System.out.println("----ALUNOS CADASTRADOS:----");
                             System.out.println();
@@ -187,6 +194,8 @@ public class App {
                         System.out.println("-------------------------------");
                         System.out.println();
                     }else{
+                        System.out.println();
+                        System.out.println("-> OPÇÃO ATUAL : 6) ALTERAR DADOS DE UM ALUNO <-");
                         System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
@@ -294,6 +303,8 @@ public class App {
                         System.out.println();
                     }else{
                         System.out.println();
+                        System.out.println("-> OPÇÃO ATUAL : 7) MOSTRAR INFORMACOES DE UM ALUNO <-");
+                        System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
                         for(int i=0;i<nome_Alunos.size();i++){
@@ -346,12 +357,81 @@ public class App {
                         System.out.println();
 
                     }
-                }else if(Integer.parseInt(op) == 8){
-                    System.out.println();
-                    System.out.println("-----------------------------------------");
-                    System.out.println("AINDA NÃO FEITO, CORNO, SABE LER NÃO?!" );  
-                    System.out.println("-----------------------------------------");
-                    System.out.println();
+                }else if(Integer.parseInt(op) == 8){ // ALTERAR FALTAS
+                    if(dici.isEmpty()){
+                        System.out.println();
+                        System.out.println("-------------------------------");
+                        System.out.println("Realize o cadastro do aluno primeiro.");
+                        System.out.println("-------------------------------");
+                        System.out.println();
+    
+                        }else{
+                            System.out.println();
+                            System.out.println("-> OPÇÃO ATUAL : 8) ALTERAR FALTAS <-");
+                            System.out.println();
+                            System.out.println("----ALUNOS CADASTRADOS:----");
+                            System.out.println();
+                            for(int i=0;i<nome_Alunos.size();i++){
+                                int aux8=i+1;
+                                System.out.println(aux8+")"+ nome_Alunos.get(i));
+                            }
+                            System.out.println("0)VOLTAR AO MENU");
+                            System.out.println();
+                            System.out.println("--Escolha um aluno--");
+                            System.out.println();
+                            System.out.println("Digite um inteiro correspondente:");
+                            System.out.println();
+                            int op_nome8 = opt.nextInt();
+                            if(op_nome8==0){continue;}
+                            System.out.println();
+                            String nome_aluno8 = nome_Alunos.get(op_nome8-1);
+                            int num_disciplinas_aluno_escolhido8=Integer.parseInt((dici.get(nome_aluno8))[2]);
+                            int aux8=0;
+                            for(int i=0;i<num_disciplinas_aluno_escolhido8;i++){
+                                if(dici_diciplinas.get(nome_aluno8)[i]!= null){aux8=1;break;}
+                            }
+                            if(aux8==1){
+                                System.out.println("-> DISCIPLINAS MATRICULADAS DE ("+nome_aluno8+") COM FALTAS CADASTRADAS:" );  
+                                System.out.println();
+                                int segundo_aux_8=0;
+                                for(int i=0;i<num_disciplinas_aluno_escolhido8;i++){
+                                    int aux_8=i+1;
+                                    if(dici_diciplinas.get(nome_aluno8)[i]!=null){
+                                        if(dici_faltas.get(nome_aluno8)[i]!=null){
+                                            segundo_aux_8=segundo_aux_8+1;
+                                            System.out.println("-------->"+aux_8+") "+ dici_diciplinas.get(nome_aluno8)[i] + " -> Nº DE FALTAS CADASTRADAS: "+ dici_faltas.get(nome_aluno8)[i]);
+                                        }
+                                        
+                                    }
+                                }
+                                if(segundo_aux_8==0){
+                                    System.out.println();
+                                    System.out.println("------ NÃO EXISTE FALTAS CADASTRADAS PARA ESSE ALUNO -------");
+                                    System.out.println();
+
+                                    continue;}
+                                System.out.println("-------->0) VOLTAR AO MENU");
+                                System.out.println();
+                                System.out.println("Digite um inteiro correspondente à disciplina que deseja ALTERAR o nº de faltas:");
+                                int op_disciplina8 = opt.nextInt();opt.nextLine();
+                                if(op_disciplina8 == 0){continue;}
+                                System.out.println();
+                                System.out.println("Digite o novo nº de faltas para a disciplina ("+ dici_diciplinas.get(nome_aluno8)[op_disciplina8-1]+ ") :");
+                                String nova_faltas = opt.nextLine();
+                                System.out.println();
+                                dici_faltas.get(nome_aluno8)[op_disciplina8-1]=nova_faltas;
+                                System.out.println();
+                                System.out.println("---- NOVO Nº DE FALTAS CADASTRADO COM SUCESSO ----");
+                                System.out.println();
+
+
+                            }else{
+                                System.out.println();
+
+                                System.out.println("---NECESSÁRIO CADASTRAR DISCIPLINAS NA OPÇÃO 9");
+                                System.out.println();
+                            }
+                        }
 
                 
                 }else if(Integer.parseInt(op) == 3){ // ADICIONAR NOTA
@@ -363,6 +443,9 @@ public class App {
                     System.out.println();
 
                     }else{
+                        System.out.println();
+                        System.out.println();
+                        System.out.println("-> OPÇÃO ATUAL : 3) ADICIONAR NOTA <-");
                         System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
@@ -426,64 +509,75 @@ public class App {
                         System.out.println("Realize o cadastro do aluno primeiro.");
                         System.out.println("-------------------------------");
                         System.out.println();
-                    }else{
-                        System.out.println();
-                        System.out.println("----ALUNOS CADASTRADOS:----");
-                        System.out.println();
-                        for(int i=0;i<nome_Alunos.size();i++){
-                            int aux=i+1;
-                            System.out.println(aux+")"+ nome_Alunos.get(i));
-                        }
-                        System.out.println("0)VOLTAR AO MENU");
-                        System.out.println();
-                        System.out.println("--Escolha um aluno--");
-                        System.out.println();
-                        System.out.println("Digite um inteiro correspondente:");
-                        System.out.println();
-                        int op_nome5 = opt.nextInt();
-                        if(op_nome5==0){continue;}
-                        System.out.println();
-                        String nome_aluno5 = nome_Alunos.get(op_nome5-1);
-                        int num_disciplinas_aluno_escolhido5=Integer.parseInt((dici.get(nome_aluno5))[2]);
-                        int aux=0;
-                        for(int i=0;i<num_disciplinas_aluno_escolhido5;i++){
-                            if(dici_diciplinas.get(nome_aluno5)[i]!= null){aux=1;break;}
-                        }
-                        if(aux==1){
-                            System.out.println("-> DISCIPLINAS MATRICULADAS DE "+nome_aluno5+" :" );  
+    
+                        }else{
                             System.out.println();
-
-                            for(int i=0;i<num_disciplinas_aluno_escolhido5;i++){
-                                int aux5=i+1;
-                                if(dici_diciplinas.get(nome_aluno5)[i]==null){
-                                    System.out.println("-------->"+aux5+") "+ "-REMOVIDA-");
-                                }else{
-                                    System.out.println("-------->"+aux5+") "+ dici_diciplinas.get(nome_aluno5)[i]);   
-                                }
+                            System.out.println();
+                            System.out.println("-> OPÇÃO ATUAL : 5) ADICIONAR FALTAS <-");
+                            System.out.println();
+                            System.out.println("----ALUNOS CADASTRADOS:----");
+                            System.out.println();
+                            for(int i=0;i<nome_Alunos.size();i++){
+                                int aux=i+1;
+                                System.out.println(aux+")"+ nome_Alunos.get(i));
                             }
-                            System.out.println("-------->0) VOLTAR AO MENU");
+                            System.out.println("0)VOLTAR AO MENU");
                             System.out.println();
-                            System.out.println("Digite um inteiro correspondente à disciplina que desejar:");
-                            int op_disciplina5 = opt.nextInt();opt.nextLine();
-                            if(op_disciplina5 == 0){continue;}
+                            System.out.println("--Escolha um aluno--");
                             System.out.println();
-                            System.out.println("-------> DISCIPLINA ESCOLHIDA PARA ADICIONAR FALTAS : " + dici_diciplinas.get(nome_aluno5)[op_disciplina5-1]);
+                            System.out.println("Digite um inteiro correspondente:");
                             System.out.println();
-                            System.out.println("Digite o número de faltas:");
-                            String faltasString=opt.nextLine();
+                            int op_nome5 = opt.nextInt();
+                            if(op_nome5==0){continue;}
                             System.out.println();
-                            dici_faltas.get(nome_aluno5)[op_disciplina5-1] = faltasString;
-                            System.out.println("-----> NÚMERO DE FALTAS ("+faltasString+") ADICIONADAS COM SUCESSO NA DISCIPLINA ("+dici_diciplinas.get(nome_aluno5)[op_disciplina5-1]+")");
+                            String nome_aluno5 = nome_Alunos.get(op_nome5-1);
+                            int num_disciplinas_aluno_escolhido5=Integer.parseInt((dici.get(nome_aluno5))[2]);
+                            int aux=0;
+                            for(int i=0;i<num_disciplinas_aluno_escolhido5;i++){
+                                if(dici_diciplinas.get(nome_aluno5)[i]!= null){aux=1;break;}
+                            }
+                            if(aux==1){
+                                System.out.println("-> DISCIPLINAS MATRICULADAS DE ("+nome_aluno5+") SEM CADASTRO DE FALTAS:" );  
+                                System.out.println();
+                                int aux_saber_se_tem_nota=0;
+                                for(int i=0;i<num_disciplinas_aluno_escolhido5;i++){
+                                    int aux5=i+1;
+                                    if(dici_diciplinas.get(nome_aluno5)[i]!=null){
+                                        if(dici_faltas.get(nome_aluno5)[i]==null){
+                                            System.out.println("-------->"+aux5+") "+ dici_diciplinas.get(nome_aluno5)[i]);
+                                            aux_saber_se_tem_nota=1;
+                                        }  
+                                    }
+                                }
+                                if(aux_saber_se_tem_nota==0){
+                                    System.out.println();
+                                    System.out.println("-- TODAS AS DISCIPLINAS DESSE ALUNO ESTÃO COM FALTAS CADASTRADAS, PARA ALTERAR VÁ NA OPÇÃO 8 (ALTERAR FALTAS) !!!");
+                                    System.out.println();
+                                    continue;
+                                }
+                                System.out.println("-------->0) VOLTAR AO MENU");
+                                System.out.println();
+                                System.out.println("Digite um inteiro correspondente à disciplina que deseja adicionar o Nº de faltas:");
+                                int op_disciplina5 = opt.nextInt();opt.nextLine();
+                                if(op_disciplina5 == 0){continue;}
+                                System.out.println();
+                                System.out.println("-------> DISCIPLINA ESCOLHIDA PARA ADICIONAR O Nº DE FALTAS : " + dici_diciplinas.get(nome_aluno5)[op_disciplina5-1]);
+                                System.out.println();
+                                System.out.println("Digite o Nº DE FALTAS:");
+                                String faltasString=opt.nextLine();
+                                System.out.println();
+                                dici_faltas.get(nome_aluno5)[op_disciplina5-1] = faltasString;
+                                System.out.println("-----> Nº DE FALTAS ("+faltasString+") ADICIONADO COM SUCESSO NA DISCIPLINA ("+dici_diciplinas.get(nome_aluno5)[op_disciplina5-1]+")");
+                                System.out.println();
+                            
+                        }else
+                        {
                             System.out.println();
-                        
-                    }else
-                    {
-                        System.out.println();
-                        System.out.println("--- NECESSÁRIO CADASTRAR DISCIPLINAS PARA O ALUNO ("+nome_aluno5.toUpperCase()+") !!!");
-                        System.out.println();
+                            System.out.println("--- NECESSÁRIO CADASTRAR DISCIPLINAS PARA O ALUNO ("+nome_aluno5.toUpperCase()+") !!!");
+                            System.out.println();
+                        }
                     }
-                    }
-                }else if(Integer.parseInt(op) == 9){
+                }else if(Integer.parseInt(op) == 9){ //ADICIONAR DISCIPLINAS
                     if(dici.isEmpty()){
                         System.out.println();
                         System.out.println("-------------------------------");
@@ -491,6 +585,8 @@ public class App {
                         System.out.println("-------------------------------");
                         System.out.println();
                     }else{
+                        System.out.println();
+                        System.out.println("-> OPÇÃO ATUAL : 9) ADICIONAR DISCIPLINAS <-");
                         System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
@@ -547,6 +643,8 @@ public class App {
                         System.out.println();
                     }else{
                         System.out.println();
+                        System.out.println("-> OPÇÃO ATUAL : 10) REMOVER DISCIPLINAS <-");
+                        System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
                         for(int i=0;i<nome_Alunos.size();i++){
@@ -601,7 +699,6 @@ public class App {
                             System.out.println();
 
                         }
-                        
 
                         }
 
