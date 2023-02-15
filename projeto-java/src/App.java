@@ -549,6 +549,7 @@ public class App {
                             String nome_aluno8 = nome_Alunos.get(op_nome8-1);
                             int num_disciplinas_aluno_escolhido8=Integer.parseInt((dici.get(nome_aluno8))[2]);
                             int aux8=0;
+
                             for(int i=0;i<num_disciplinas_aluno_escolhido8;i++){
                                 if(dici_diciplinas.get(nome_aluno8)[i]!= null){aux8=1;break;}
                             }
@@ -557,7 +558,7 @@ public class App {
                                 System.out.println();
                                 int segundo_aux_8=0;
                                 String op_disci8_string;
-                                while(true){
+                                
                                 for(int i=0;i<num_disciplinas_aluno_escolhido8;i++){
                                     int aux_8=i+1;
                                     if(dici_diciplinas.get(nome_aluno8)[i]!=null){
@@ -565,7 +566,6 @@ public class App {
                                             segundo_aux_8=segundo_aux_8+1;
                                             System.out.println("-------->"+aux_8+") "+ dici_diciplinas.get(nome_aluno8)[i] + " -> Nº DE FALTAS CADASTRADAS: "+ dici_faltas.get(nome_aluno8)[i]);
                                         }
-                                        
                                     }
                                 }
                                 if(segundo_aux_8==0){
@@ -577,10 +577,13 @@ public class App {
                                 System.out.println("-------->0) VOLTAR AO MENU");
                                 System.out.println();
                                 System.out.println("Digite um inteiro correspondente à disciplina que deseja ALTERAR o nº de faltas:");
+                                while(true){
                                 op_disci8_string = opt.nextLine();
                         
                                 System.out.println();
                                 System.out.println("-------------------------------------------");
+                                System.out.println();
+                                System.out.println("--> DIGITE UMA OPCAO VALIDA.");
                             
                                 if((isInteger(op_disci8_string)==true) && (op_disci8_string!="")){
                                     int aux_int=Integer.parseInt(op_disci8_string);
