@@ -165,6 +165,8 @@ public class App {
                             System.out.println();
                             System.out.println("----ALUNOS CADASTRADOS:----");
                             System.out.println();
+                            String op_nome4_string;
+                            while(true){
                             for(int i=0;i<nome_Alunos.size();i++){
                                 int aux4=i+1;
                                 System.out.println(aux4+")"+ nome_Alunos.get(i));
@@ -175,7 +177,22 @@ public class App {
                             System.out.println();
                             System.out.println("Digite um inteiro correspondente:");
                             System.out.println();
-                            int op_nome4 = opt.nextInt();
+                            op_nome4_string = opt.nextLine();
+                        
+                            System.out.println();
+                            System.out.println("-------------------------------------------");
+                            
+                            if((isInteger(op_nome4_string)==true) && (op_nome4_string!="")){
+                                int aux_int=Integer.parseInt(op_nome4_string);
+                                if((aux_int>=0) && (aux_int<=nome_Alunos.size())){
+                                    break;
+                                }
+                                System.out.println("-------------------------------------------");
+                                System.out.println();
+                            }
+                            }
+                            
+                            int op_nome4=Integer.parseInt(op_nome4_string);
                             if(op_nome4==0){continue;}
                             System.out.println();
                             String nome_aluno4 = nome_Alunos.get(op_nome4-1);
@@ -240,6 +257,8 @@ public class App {
                         System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
+                        String op_nome6_string;
+                        while(true){
                         for(int i=0;i<nome_Alunos.size();i++){
                             int aux=i+1;
                             System.out.println(aux+")"+ nome_Alunos.get(i));
@@ -251,7 +270,22 @@ public class App {
                         System.out.println();
                         System.out.println("Digite um inteiro correspondente:");
                         System.out.println();
-                        int op_nome6 = opt.nextInt();
+                        op_nome6_string = opt.nextLine();
+                        
+                        System.out.println();
+                        System.out.println("-------------------------------------------");
+                        
+                        if((isInteger(op_nome6_string)==true) && (op_nome6_string!="")){
+                            int aux_int=Integer.parseInt(op_nome6_string);
+                            if((aux_int>=0) && (aux_int<=nome_Alunos.size())){
+                                break;
+                            }
+                            System.out.println("-------------------------------------------");
+                            System.out.println();
+                        }
+                        }
+                        
+                        int op_nome6=Integer.parseInt(op_nome6_string);
                         if(op_nome6==0){continue;}
                         System.out.println();
                         System.out.println();
@@ -348,6 +382,8 @@ public class App {
                         System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
+                        String op_nome7_string;
+                        while(true){
                         for(int i=0;i<nome_Alunos.size();i++){
                             int aux=i+1;
                             System.out.println(aux+")"+ nome_Alunos.get(i));
@@ -359,7 +395,22 @@ public class App {
                         System.out.println();
                         System.out.println("Digite um inteiro correspondente:");
                         System.out.println();
-                        int op_nome7 = opt.nextInt();
+                        op_nome7_string = opt.nextLine();
+                        
+                        System.out.println();
+                        System.out.println("-------------------------------------------");
+                        
+                        if((isInteger(op_nome7_string)==true) && (op_nome7_string!="")){
+                            int aux_int=Integer.parseInt(op_nome7_string);
+                            if((aux_int>=0) && (aux_int<=nome_Alunos.size())){
+                                break;
+                            }
+                            System.out.println("-------------------------------------------");
+                            System.out.println();
+                        }
+                        }
+                        
+                        int op_nome7=Integer.parseInt(op_nome7_string);
                         if(op_nome7==0){continue;}
                         System.out.println();
                         System.out.println();
@@ -412,6 +463,8 @@ public class App {
                             System.out.println();
                             System.out.println("----ALUNOS CADASTRADOS:----");
                             System.out.println();
+                            String op_nome8_string;
+                            while(true){
                             for(int i=0;i<nome_Alunos.size();i++){
                                 int aux8=i+1;
                                 System.out.println(aux8+")"+ nome_Alunos.get(i));
@@ -422,7 +475,22 @@ public class App {
                             System.out.println();
                             System.out.println("Digite um inteiro correspondente:");
                             System.out.println();
-                            int op_nome8 = opt.nextInt();
+                            op_nome8_string = opt.nextLine();
+                        
+                            System.out.println();
+                            System.out.println("-------------------------------------------");
+                            
+                            if((isInteger(op_nome8_string)==true) && (op_nome8_string!="")){
+                                int aux_int=Integer.parseInt(op_nome8_string);
+                                if((aux_int>=0) && (aux_int<=nome_Alunos.size())){
+                                    break;
+                                }
+                                System.out.println("-------------------------------------------");
+                                System.out.println();
+                            }
+                            }
+                            
+                            int op_nome8=Integer.parseInt(op_nome8_string);
                             if(op_nome8==0){continue;}
                             System.out.println();
                             String nome_aluno8 = nome_Alunos.get(op_nome8-1);
@@ -490,6 +558,8 @@ public class App {
                         System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
+                        String op_nome3_string;
+                        while(true){
                         for(int i=0;i<nome_Alunos.size();i++){
                             int aux=i+1;
                             System.out.println(aux+")"+ nome_Alunos.get(i));
@@ -500,7 +570,22 @@ public class App {
                         System.out.println();
                         System.out.println("Digite um inteiro correspondente:");
                         System.out.println();
-                        int op_nome3 = opt.nextInt();
+                        op_nome3_string = opt.nextLine();
+                        
+                        System.out.println();
+                        System.out.println("-------------------------------------------");
+                        
+                        if((isInteger(op_nome3_string)==true) && (op_nome3_string!="")){
+                            int aux_int=Integer.parseInt(op_nome3_string);
+                            if((aux_int>=0) && (aux_int<=nome_Alunos.size())){
+                                break;
+                            }
+                            System.out.println("-------------------------------------------");
+                            System.out.println();
+                        }
+                        }
+                        
+                        int op_nome3=Integer.parseInt(op_nome3_string);
                         if(op_nome3==0){continue;}
                         System.out.println();
                         String nome_aluno3 = nome_Alunos.get(op_nome3-1);
@@ -558,6 +643,8 @@ public class App {
                             System.out.println();
                             System.out.println("----ALUNOS CADASTRADOS:----");
                             System.out.println();
+                            String op_nome5_string;
+                            while(true){
                             for(int i=0;i<nome_Alunos.size();i++){
                                 int aux=i+1;
                                 System.out.println(aux+")"+ nome_Alunos.get(i));
@@ -568,7 +655,22 @@ public class App {
                             System.out.println();
                             System.out.println("Digite um inteiro correspondente:");
                             System.out.println();
-                            int op_nome5 = opt.nextInt();
+                            op_nome5_string = opt.nextLine();
+                        
+                            System.out.println();
+                            System.out.println("-------------------------------------------");
+                            
+                            if((isInteger(op_nome5_string)==true) && (op_nome5_string!="")){
+                                int aux_int=Integer.parseInt(op_nome5_string);
+                                if((aux_int>=0) && (aux_int<=nome_Alunos.size())){
+                                    break;
+                                }
+                                System.out.println("-------------------------------------------");
+                                System.out.println();
+                            }
+                            }
+                            
+                            int op_nome5=Integer.parseInt(op_nome5_string);
                             if(op_nome5==0){continue;}
                             System.out.println();
                             String nome_aluno5 = nome_Alunos.get(op_nome5-1);
@@ -631,6 +733,8 @@ public class App {
                         System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
+                        String op_nome9_string;
+                        while(true){
                         for(int i=0;i<nome_Alunos.size();i++){
                             int aux=i+1;
                             System.out.println(aux+")"+ nome_Alunos.get(i));
@@ -642,7 +746,22 @@ public class App {
                         System.out.println("Digite um inteiro correspondente:");
                         System.out.println();
 
-                        int op_nome9 = opt.nextInt();opt.nextLine();
+                        op_nome9_string = opt.nextLine();
+                        
+                        System.out.println();
+                        System.out.println("-------------------------------------------");
+                        
+                        if((isInteger(op_nome9_string)==true) && (op_nome9_string!="")){
+                            int aux_int=Integer.parseInt(op_nome9_string);
+                            if((aux_int>=0) && (aux_int<=nome_Alunos.size())){
+                                break;
+                            }
+                            System.out.println("-------------------------------------------");
+                            System.out.println();
+                        }
+                        }
+                        
+                        int op_nome9=Integer.parseInt(op_nome9_string);
                         if(op_nome9==0){continue;}
                         System.out.println();
                         String nome_aluno9 = nome_Alunos.get(op_nome9-1);
@@ -688,6 +807,8 @@ public class App {
                         System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
+                        String op_nome10_string;
+                        while(true){
                         for(int i=0;i<nome_Alunos.size();i++){
                             int aux=i+1;
                             System.out.println(aux+")"+ nome_Alunos.get(i));
@@ -698,7 +819,22 @@ public class App {
                         System.out.println();
                         System.out.println("Digite um inteiro correspondente:");
                         System.out.println();
-                        int op_nome10 = opt.nextInt();opt.nextLine();
+                        op_nome10_string = opt.nextLine();
+                        
+                        System.out.println();
+                        System.out.println("-------------------------------------------");
+                        
+                        if((isInteger(op_nome10_string)==true) && (op_nome10_string!="")){
+                            int aux_int=Integer.parseInt(op_nome10_string);
+                            if((aux_int>=0) && (aux_int<=nome_Alunos.size())){
+                                break;
+                            }
+                            System.out.println("-------------------------------------------");
+                            System.out.println();
+                        }
+                        }
+                        
+                        int op_nome10=Integer.parseInt(op_nome10_string);
                         if(op_nome10==0){continue;}
                         System.out.println();
                         String nome_aluno10 = nome_Alunos.get(op_nome10-1);
