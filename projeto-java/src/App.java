@@ -12,7 +12,7 @@ public class App {
         Map<String,String[]> dici_diciplinas = new HashMap<>();
         Map<String,String[]> dici_notas = new HashMap<>();
         Map<String,String[]> dici_faltas = new HashMap<>();
-
+        
         System.out.println("-------------- Bem vindo ao sistema de cadastro! -------------");
         System.out.println();
         while(true){
@@ -32,7 +32,16 @@ public class App {
                 + "\n 0.Sair\n");
             Scanner opt = new Scanner(System.in);
             System.out.println("Digite uma opção (Nº INTEIRO): ");
-            String op = opt.nextLine();
+            String op="";
+            while(op==""){
+                op=opt.nextLine();
+                if(op==""){
+                    System.out.println();
+                    System.out.println("---NECESSARIO DIGITAR ALGUMA OPÇAO---");
+                    System.out.println();
+                }
+            }
+            
             if(isInteger(op)){
                 if(Integer.parseInt(op) == 1) // OPCAO MATRICULAR UM ALUNO
                 {
@@ -43,6 +52,13 @@ public class App {
                     System.out.println("-----------------------");
                     System.out.println("Digite o NOME do aluno:");
                     String nome = matricula.nextLine();
+                    while(nome==""){
+                        System.out.println("");
+                        System.out.println("--- > NOME É UM CAMPO OBRIGATÓRIO, NÃO PODE FICAR EM BRANCO!!!");
+                        System.out.println("");
+                        System.out.println("Digite o NOME do aluno:");
+                        nome = matricula.nextLine();
+                    }
                     System.out.println("-----------------------");
                     System.out.println("Digite o CPF:");
                     String cpf = matricula.nextLine();
@@ -52,6 +68,13 @@ public class App {
                     System.out.println("-----------------------");
                     System.out.println("Digite o NÚMERO DE DISCIPLINAS desse aluno:");
                     String num_disciplinas = matricula.nextLine();
+                    while((isInteger(num_disciplinas)==false) || (num_disciplinas=="")){
+                        System.out.println("");
+                        System.out.println("--- > NECESSARIO DIGITAR UM NUMERO INTEIRO PARA O Nº DE DISCIPLINAS!!!");
+                        System.out.println("");
+                        System.out.println("Digite o NÚMERO DE DISCIPLINAS desse aluno:");
+                        num_disciplinas = matricula.nextLine();
+                    }
                     System.out.println("-----------------------");
                     System.out.println("Digite o E-MAIL desse aluno:");
                     String email = matricula.nextLine();
@@ -84,6 +107,8 @@ public class App {
                         System.out.println();
                         System.out.println("----ALUNOS CADASTRADOS:----");
                         System.out.println();
+                        String op_nome3_string;
+                        while(true){
                         for(int i=0;i<nome_Alunos.size();i++){
                             int aux=i+1;
                             System.out.println(aux+")"+ nome_Alunos.get(i));
@@ -95,7 +120,23 @@ public class App {
                         System.out.println();
                         System.out.println("Digite um inteiro correspondente:");
                         System.out.println();
-                        int op_nome3 = opt.nextInt(); // DA B.O SE O ANIMAL NAO DIGITAR INTEIRO.
+                        op_nome3_string = opt.nextLine();
+                        
+                        System.out.println();
+                        System.out.println("-------------------------------------------");
+                        
+                        if((isInteger(op_nome3_string)==true) && (op_nome3_string!="")){
+                            int aux_int=Integer.parseInt(op_nome3_string);
+                            if((aux_int>=0) && (aux_int<=nome_Alunos.size())){
+                                break;
+                            }
+                            System.out.println("-------------------------------------------");
+                            System.out.println();
+                        }
+                        }
+                        
+                        int op_nome3=Integer.parseInt(op_nome3_string);
+
                         if(op_nome3==0){continue;}
                         String aluno_removeString =nome_Alunos.get(op_nome3-1);
                         dici.remove(aluno_removeString);
